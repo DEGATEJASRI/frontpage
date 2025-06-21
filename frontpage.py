@@ -45,4 +45,32 @@ if authentication_status:
     # Replace this with your actual app
     st.title("🔐 SmartShield Dashboard")
     st.write("Welcome to the Intrusion Detection System powered by AI.")
+    import streamlit as st
+import streamlit_authenticator as stauth
+import yaml
+from yaml.loader import SafeLoader
+
+config = yaml.load("""
+credentials:
+  usernames:
+    admin_user:
+      name: Admin
+      password: '$2b$12$KIXfQXq2Ihz2fTfQzya4VOGUErFei/mZ4eZPKP6zTyMuFkeVO/Sm6'
+      email: admin@example.com
+    analyst_user:
+      name: Analyst
+      password: '$2b$12$Wb5P6xP.HHRR2j5CrKyt7OFNHiOwFX7Ljkmu.y3yU2LuJpxdHITbK'
+      email: analyst@example.com
+
+cookie:
+  name: smartshield_cookie
+  key: some_signature_key
+  expiry_days: 3
+
+preauthorized:
+  emails:
+    - admin@example.com
+    - analyst@example.com
+""", Loader=SafeLoader)
+
 
